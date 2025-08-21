@@ -1,5 +1,7 @@
 import React from 'react'
-import { Container, Group, Anchor } from "@mantine/core";
+import { Container, Group, Anchor, Image,Paper } from "@mantine/core";
+import Retrix from "../assets/retrix_logo.jpeg";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
     const links = [
@@ -12,37 +14,84 @@ const Navbar = () => {
   { id: "contact", label: "Contact Us" },
 ];
   return (
-    <div>
-        <header
+  <Paper
+      component="header"
+      shadow="sm"
+      radius={0}
+      withBorder={false}
       style={{
         position: "fixed",
         top: 0,
-        left: 0,
-        width: "100%",
-        background: "#fff",
+        insetInline: 0,
         zIndex: 1000,
-        boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+        background:
+          "linear-gradient(90deg, #111827 0%, #1f2937 35%, #111827 100%)",
       }}
     >
-      <Container size="lg">
-        <Group spacing="lg" h={60}>
-          {links.map((sec) => (
-            <Anchor
-              key={sec.id}
-              href={`#${sec.id}`}
-              underline={false}
-              c="dark"
-              fw={500}
-              style={{ scrollBehavior: "smooth" }}
+      <Container
+        size="lg"
+        style={{
+          height: 72,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 16,
+        }}
+      >
+        {/* LOGO LEFT, perfectly aligned */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          style={{ display: "flex", alignItems: "center" }}
+        >
+          <Image
+            src={Retrix}
+            alt="Retrix"
+            height={36}
+            fit="contain"
+            styles={{
+              root: { display: "flex", alignItems: "center" },
+              image: { objectFit: "contain" },
+            }}
+          />
+        </motion.div>
+
+        {/* LINKS */}
+        <Group gap="lg">
+          {links.map((l, i) => (
+            <motion.div
+              key={l.id}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.05 * i }}
             >
-              {sec.label}
-            </Anchor>
+              <Anchor
+                href={`#${l.id}`}
+                underline="never"
+                style={{
+                  color: "white",
+                  fontWeight: 600,
+                  letterSpacing: 0.2,
+                  padding: "6px 8px",
+                  borderRadius: 8,
+                }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.background = "rgba(255,255,255,0.08)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.background = "transparent")
+                }
+              >
+                {l.label}
+              </Anchor>
+            </motion.div>
           ))}
         </Group>
       </Container>
-    </header>
+    </Paper>
       
-    </div>
+  
   )
 }
 

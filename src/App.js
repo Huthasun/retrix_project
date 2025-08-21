@@ -7,11 +7,13 @@ import Industries from "./Sections/Industries";
 import Clients from "./Sections/Clients";
 import About from "./Sections/About";
 import Contact from "./Sections/Contact";
+import ScrollToTop from "./Components/ScrollToTop";
 const App = () => {
   return (
      <>
+      
       <Navbar />
-      <main style={{ marginTop: 70 }}>
+      <main style={{ marginTop: 80 }}>
         <Home />
         <Products />
         <Solutions />
@@ -20,6 +22,8 @@ const App = () => {
         <About />
         <Contact />
       </main>
+      <ScrollToTop/>
+    
     </>
   )
 }

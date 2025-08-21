@@ -13,7 +13,7 @@ const letterAnimation = {
     },
   }),
 };
-
+//////////////////hhhhhh//////////
 const AnimatedTitle = ({ text, className = "" }) => {
   return (
     <div className={`overflow-hidden flex justify-center ${className}`}>
